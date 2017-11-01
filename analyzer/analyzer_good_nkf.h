@@ -35,7 +35,7 @@ public:
         return _vehicle->nkf_flags();
     }
 
-    std::map<const std::string, double> variances() {
+    std::map<const std::string, double> variances() override {
         return _vehicle->nkf_variances();
     }
 

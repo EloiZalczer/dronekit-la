@@ -35,7 +35,7 @@ public:
         return _vehicle->ekf_flags();
     }
 
-    std::map<const std::string, double> variances() {
+    std::map<const std::string, double> variances() override {
         return _vehicle->ekf_variances();
     }
 
