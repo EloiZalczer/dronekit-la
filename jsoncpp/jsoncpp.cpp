@@ -74,6 +74,7 @@ license you like.
 
 
 #include "json/json.h"
+#include "attributes.h"
 
 #ifndef JSON_IS_AMALGAMATION
 #error "Compile with -I PATH_TO_JSON_DIRECTORY"
@@ -1257,6 +1258,7 @@ bool OurReader::readValue() {
       currentValue().swapPayload(v);
       break;
     } // else, fall through ...
+    FALLTHROUGH;
   default:
     return addError("Syntax error: value, object or array expected.", token);
   }
