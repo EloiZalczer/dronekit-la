@@ -8,7 +8,7 @@ INCS = -I./util -I./ini -I./ini/cpp
 INCS += -Ijsoncpp
 INCS += -I.
 
-WARNFLAGS= -Wall -Werror -Wextra -Wunused -Wredundant-decls -D_FORTIFY_SOURCE=2 -Wfloat-equal -fstack-protector -Wformat -Werror=format-security -Werror=pointer-arith -Wpedantic
+WARNFLAGS= -Wall -Werror -Wextra -Wunused -Wredundant-decls -D_FORTIFY_SOURCE=2 -Wfloat-equal -fstack-protector -Wformat -Werror=format-security -Werror=pointer-arith -Wpedantic -Werror=sign-compare
 
 ifeq ($(OS),Windows_NT)
 	CXX=x86_64-w64-mingw32-g++.exe
@@ -20,11 +20,13 @@ else
 	CC_VERSION := $(shell $(CC) --version)
 	ifeq ($(findstring clang, $(CC_VERSION)),)
 		WARNFLAGS += -Wlogical-op
+	else
+		WARNFLAGS += -Werror=implicit-fallthrough
 	endif
 	UNAME_S := $(shell uname -s)
 endif
 
-STD=-std=c++11
+STD=-std=c++1z
 CSTD=-std=c11
 #GCOV=-fprofile-arcs -ftest-coverage
 #EFFCPP=-Weffc++
